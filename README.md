@@ -1,5 +1,5 @@
 # express-project-one
-####Learning Node + Express + Nunjucks
+#### Learning Node + Express + Nunjucks
 
 1. Install [Express Generator](https://expressjs.com/en/starter/generator.html)
     ```bash 
@@ -18,5 +18,5 @@
     foo@bar:~$ npm install nunjucks
     ```
     
-#####Future Improvements
+##### Future Improvements
 Spawn into Express + Nunjucks application boilerplate
