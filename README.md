@@ -1,14 +1,15 @@
 # express-project-one
-Learning NodeJs + ExpressJs + Nunjucks
+Learning Node + Express + Nunjucks
 
 1. Create scaffolding using [Express Generator](https://expressjs.com/en/starter/generator.html)
-
-
-2. Uninstall default templating engine 
-   ```console 
-   npm uninstall jade --save
+   ```bash 
+   foo@bar:~$ express 
+   ```
+2. Uninstall default templating engine
+   ```sh 
+   foo@bar:~$ npm uninstall jade --save
    ```
 3. Install Nunjucks tempalting engine 
    ```console 
-    npm install nunjucks --save
+   foo@bar:~$ npm install nunjucks
    ```
