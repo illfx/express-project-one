@@ -17,29 +17,15 @@ router.get('/', function(req, res, next) {
     res.render('index.njk');
 });
 
-
-// DOES NOT WORK;
-router.get('/redis', function(req, res){
-
-    client.multi()
-        .keys('*', function (err, replies) {
-
-            console.log("MULTI got " + replies.length + " replies");
-            var items  = [];
-            replies.forEach(function (reply, index) {
-                console.log("Reply " + index + ": " + reply.toString());
-                client.get(reply, function(err, data){
-                    console.log(data);
-                    items.push({key: reply, value: data});
-                });
-            });
-            res.render('redis/index.njk',  { keys: replies, items: items });
-        })
-        .exec(function (err, replies) {});
-
-});
-
-// DOES NOT WORK;
+/***
+ *
+ *  GET  /redis
+ *
+ *  ** DOES NOT WORK ** SEE SCREENSHOT FOR OUTPUT
+ *
+ *  https://imgur.com/a/UXW2A
+ *
+ */
 
 router.get('/redis', function(req, res) {
 
@@ -52,16 +38,16 @@ router.get('/redis', function(req, res) {
 
                 client.get(key, function (err, val) {
                     if(err) console.log('error: ', err);
-                    values.push(val);
                     items.push({key: key, value: val})
                 });
 
-
             });
-        res.render('redis/index.njk',  { keys: keys, items: items, values: values });
+        res.render('redis/index.njk',  { keys: keys, items: items });
     });
 
 });
+
+
 
 router.get('/redis/:key', function(req, res) {
    client.get(req.params.key, function(err, value){

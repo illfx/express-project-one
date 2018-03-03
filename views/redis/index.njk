@@ -4,14 +4,25 @@
     <title>Redis Demo</title>
 </head>
 <body>
-
+    <h2>Redis Store Demonstration</h2>
+    <h4>Set Key/Value Pair</h4>
     <form name="redis" action="/redis/store" method="post">
-        <label>Key: <input type="text" name="key" /></label>
-        <label>Value: <input type="text" name="value" /></label>
+        <span style="text-align: right">
+        <label>
+            Key:
+            <input type="text" name="key" />
+        </label>
+        <br />
+        <label>
+            Value:
+            <input type="text" name="value" />
+        </label>
+        </span>
+        <br />
         <button>Submit</button>
     </form>
 
-    <h2>Keys</h2>
+    <h4>Keys</h4>
     <div>keys Count: <span id="keys_count">{{ keys.length }}</span></div>
     {% if keys.length > 0 %}
         <ul>
@@ -24,7 +35,7 @@
     {% endif %}
 
 
-    <h2>Items</h2>
+    <h4>Items</h4>
     <div>Items Count: <span id="items_count">{{ items.length }}</span></div>
     {% if items.length > 0 %}
         <ul>
@@ -34,15 +45,5 @@
         </ul>
     {% endif %}
 
-    <h2>Values</h2>
-    <div>Values Count: <span id="values_count">{{ values.length }}</span></div>
-    {% if values.length > 0 %}
-
-        <ul>
-            {% for value in values %}
-                <li>{{ value }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
 </body>
 </html>
