@@ -6,8 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var nunjucks = require('nunjucks');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+var redis = require('./routes/redis');
 
 var app = express();
 
@@ -16,6 +15,7 @@ nunjucks.configure('views', {
     autoescape: true,
     express: app
 });
+
 app.set('view engine', 'njk');
 
 // uncomment after placing your favicon in /public
@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.use('/redis', redis);
 // app.use('/users', users);
 
 // catch 404 and forward to error handler
