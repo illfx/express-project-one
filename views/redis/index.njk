@@ -1,23 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Redis Demo</title>
-</head>
-<body>
+{% extends 'layout.njk' %}
+
+{% block content %}
     <h2>Redis Store Demonstration</h2>
     <h4>Set Key/Value Pair</h4>
-    <form name="redis" action="/redis/store" method="post">
-        <span style="text-align: right">
+    {% if ( alert ) %}
+        <div class="alert {{ alert.type }}">{{ alert.message }}</div>
+    {% endif %}
+    <form name="redis" action="/store" method="post">
+            {% if ( errors.key ) %}
+                <div style="color:red">
+                    {{ errors.key }}
+                </div>
+            {% endif %}
         <label>
             Key:
-            <input type="text" name="key" />
+            <input type="text" name="key" value="{{ old.key }}"/>
         </label>
         <br />
+            {% if ( errors.value ) %}
+                <div style="color:red">
+                    {{ errors.value }}
+                </div>
+            {% endif %}
         <label>
             Value:
-            <input type="text" name="value" />
+            <input type="text" name="value" value="{{ old.value }}" />
         </label>
-        </span>
         <br />
         <button>Submit</button>
     </form>
@@ -40,10 +48,21 @@
     {% if items.length > 0 %}
         <ul>
             {% for item in items %}
-                <li>{{ item.key }} : {{ item.value }}</li>
+                <li>{{ item.key }} : {{ item.value }} <a class="delete" data-key="{{ item.key }}"><i class="far fa-times-circle"></i></a></li>
             {% endfor %}
         </ul>
     {% endif %}
+{% endblock %}
 
-</body>
-</html>
+{% block script %}
+    <script>
+        $(function(){
+            $('.delete').on('click', function() {
+                $.ajax({
+                    type: "DELETE",
+                    url: '/redis/'+$(this).data('key')
+                });
+            });
+        });
+    </script>
+{% endblock %}
