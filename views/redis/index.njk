@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Redis Demo</title>
+</head>
+<body>
+
+    <form name="redis" action="/redis/store" method="post">
+        <label>Key: <input type="text" name="key" /></label>
+        <label>Value: <input type="text" name="value" /></label>
+        <button>Submit</button>
+    </form>
+
+    <h2>Keys</h2>
+    <div>keys Count: <span id="keys_count">{{ keys.length }}</span></div>
+    {% if keys.length > 0 %}
+        <ul>
+        {% for key in keys %}
+
+            <li>{{ key }}</li>
+
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+
+    <h2>Items</h2>
+    <div>Items Count: <span id="items_count">{{ items.length }}</span></div>
+    {% if items.length > 0 %}
+        <ul>
+            {% for item in items %}
+                <li>{{ item.key }} : {{ item.value }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h2>Values</h2>
+    <div>Values Count: <span id="values_count">{{ values.length }}</span></div>
+    {% if values.length > 0 %}
+
+        <ul>
+            {% for value in values %}
+                <li>{{ value }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
